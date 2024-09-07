@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的背包清單</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>我的背包清單</h1>
+        </header>
+        <div id="tagSection">
+            <button id="travelTag" class="tag active" onclick="switchTag('travel')">旅遊</button>
+            <button id="businessTag" class="tag" onclick="switchTag('business')">出差</button>
+        </div>
+        <div id="controlSection">
+            <div id="addItemSection">
+                <input type="text" id="newItem" placeholder="添加新項目...">
+            </div>
+            <div class="controlButtons">
+                <button id="addButton"><i class="fas fa-plus"></i> <span>新增</span></button>
+                <button id="editButton" onclick="toggleEditMode()"><i class="fas fa-edit"></i> <span>編輯</span></button>
+                <button id="resetButton" onclick="resetList()"><i class="fas fa-undo"></i> <span>還原預設</span></button>
+            </div>
+        </div>
+        <span id="inputError" class="error-message"></span>
+        <div id="listContainer">
+            <ul id="travelList"></ul>
+        </div>
+    </div>
+    <div id="confirmModal" class="modal">
+        <div class="modal-content">
+            <p id="modalMessage"></p>
+            <div class="modal-buttons">
+                <button id="confirmButton">確認</button>
+                <button id="cancelButton">取消</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
