@@ -202,3 +202,17 @@ li {
 #travelList input {
     margin-right: 10px;
 }
+
+#uncheckButton {
+    padding: 10px 15px;
+    border: none;
+    background-color: #e74c3c; /* 使用紅色背景 */
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-left: 5px;
+}
+
+#uncheckButton:hover {
+    background-color: #c0392b; /* 懸停時的顏色 */
+}

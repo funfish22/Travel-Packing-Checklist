@@ -176,3 +176,13 @@ function hideError() {
     const errorMessage = document.getElementById("inputError");
     errorMessage.classList.remove("show");
 }
+
+function uncheckAll() {
+    const checkboxes = document.querySelectorAll('#travelList input[type="checkbox"]');
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = false; // 取消勾選
+        const label = checkbox.nextElementSibling; // 獲取相應的 label
+        label.classList.remove("checked"); // 移除 checked 樣式
+    });
+    saveList(); // 保存狀態
+}
