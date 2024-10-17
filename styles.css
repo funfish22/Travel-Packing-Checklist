@@ -93,7 +93,7 @@ h1 {
     }
     .container {
         max-width: none;
-        height: 100%;
+        height: calc(100% - var(--vh));
         padding-bottom: 30px;
     }
     #controlSection #addItemSection {
