@@ -84,6 +84,9 @@ h1 {
 }
 
 @media screen and (max-width: 767px) {
+    body {
+        padding: 0;
+    }
     .container {
         max-width: none;
         height: 100vh;
