@@ -29,6 +29,10 @@ document.addEventListener('DOMContentLoaded', function() {
         addItem();
     });
 
+    
+});
+
+window.addEventListener('load', (event) => {
     fixVh()
 });
 
