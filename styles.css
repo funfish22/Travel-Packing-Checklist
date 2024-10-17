@@ -94,6 +94,7 @@ h1 {
     .container {
         max-width: none;
         height: 100%;
+        padding-bottom: 30px;
     }
     #controlSection #addItemSection {
         margin-right: 0;
