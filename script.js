@@ -28,7 +28,14 @@ document.addEventListener('DOMContentLoaded', function() {
         event.preventDefault();
         addItem();
     });
+
+    fixVh()
 });
+
+function fixVh() {
+    var vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', vh + 'px');
+}
 
 function switchTag(tag) {
     currentTag = tag;

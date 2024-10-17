@@ -89,7 +89,7 @@ h1 {
     }
     .container {
         max-width: none;
-        height: 100vh;
+        height: calc(100vh - var(--vh));
     }
     #controlSection #addItemSection {
         margin-right: 0;
