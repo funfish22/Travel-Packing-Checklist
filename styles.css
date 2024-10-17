@@ -16,6 +16,10 @@ body {
     overflow: hidden; /* 防止 body 出現卷軸 */
 }
 
+label {
+    width: 100%;
+}
+
 .container {
     width: 100%;
     max-width: 600px;
@@ -41,7 +45,7 @@ h1 {
 #tagSection {
     display: flex;
     justify-content: center;
-    padding: 10px;
+    padding: 15px;
 }
 
 .tag {
@@ -64,19 +68,28 @@ h1 {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    padding: 15px;
+    padding: 0 15px 7px;
+    gap: 12px;
 }
 
 #addItemSection {
     display: flex;
     flex-grow: 1;
-    margin-right: 10px;
+}
+
+.controlButtons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
 }
 
 @media screen and (max-width: 767px) {
+    .container {
+        max-width: none;
+        height: 100vh;
+    }
     #controlSection #addItemSection {
         margin-right: 0;
-        margin-bottom: 16px;
     }
     .controlButtons button {
         margin-left: 0;
@@ -98,7 +111,6 @@ button {
     color: white;
     cursor: pointer;
     border-radius: 4px;
-    margin-left: 5px;
 }
 
 button:hover {
@@ -210,7 +222,6 @@ li {
     color: white;
     cursor: pointer;
     border-radius: 4px;
-    margin-left: 5px;
 }
 
 #uncheckButton:hover {

@@ -1,9 +1,10 @@
 let itemCounter = 0;
 let isEditMode = false;
-let currentTag = 'travel';
+let currentTag = 'travelTw';
 
 const initialItems = {
-    travel: ["護照", "機票", "旅館預訂確認", "衣物", "洗漱用品", "充電器", "相機", "現金和信用卡"],
+    travelTw: ["證件 (身分證、健保卡、駕照)", "衣物 (衣服、褲子、內褲、襪子)", "衣物收納袋", "洗漱用品 (牙膏、牙刷、洗面乳)", "毛巾", "控油洗髮精", "保養品", "手機", "平板電腦", "充電器 (相機、手機、平版充電器)", "行動電源", "相機 (注意是否有記憶卡和電池)", "現金和信用卡", "藥物", "防蚊液 (防小黑蚊)"],
+    travelGlobal: ["護照", "機票", "旅館預訂確認", "衣物", "洗漱用品", "充電器", "相機", "現金和信用卡"],
     business: ["筆記本電腦", "名片", "文件夾", "商務服裝", "充電器", "筆", "記事本", "商務手機"]
 };
 
@@ -31,7 +32,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function switchTag(tag) {
     currentTag = tag;
-    document.getElementById('travelTag').classList.toggle('active', tag === 'travel');
+    document.getElementById('travelTwTag').classList.toggle('active', tag === 'travelTw');
+    document.getElementById('travelGlobalTag').classList.toggle('active', tag === 'travelGlobal');
     document.getElementById('businessTag').classList.toggle('active', tag === 'business');
     loadList();
 }

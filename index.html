@@ -13,7 +13,8 @@
             <h1>我的背包清單</h1>
         </header>
         <div id="tagSection">
-            <button id="travelTag" class="tag active" onclick="switchTag('travel')">旅遊</button>
+            <button id="travelTwTag" class="tag active" onclick="switchTag('travelTw')">過內旅遊</button>
+            <button id="travelGlobalTag" class="tag" onclick="switchTag('travelGlobal')">過外旅遊</button>
             <button id="businessTag" class="tag" onclick="switchTag('business')">出差</button>
         </div>
         <div id="controlSection">
@@ -23,7 +24,7 @@
             <div class="controlButtons">
                 <button id="addButton"><i class="fas fa-plus"></i> <span>新增</span></button>
                 <button id="editButton" onclick="toggleEditMode()"><i class="fas fa-edit"></i> <span>編輯</span></button>
-                <!-- <button id="resetButton" onclick="resetList()"><i class="fas fa-undo"></i> <span>還原預設</span></button> -->
+                <button id="resetButton" onclick="resetList()"><i class="fas fa-undo"></i> <span>還原預設</span></button>
                 <button id="uncheckButton" onclick="uncheckAll()"><i class="fas fa-times-circle"></i> 取消全部勾選</button> <!-- 新增的按鈕 -->
             </div>
         </div>
