@@ -4,6 +4,10 @@
     padding: 0;
 }
 
+html, body {
+    height: 100%;
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f4f8;
@@ -14,7 +18,7 @@ body {
     min-height: 100vh;
     padding: 20px;
     overflow: hidden; /* 防止 body 出現卷軸 */
-    height: calc(100vh - var(--vh));
+    height: calc(100% - var(--vh));
 }
 
 label {
@@ -132,6 +136,7 @@ button:hover {
 #listContainer {
     flex-grow: 1;
     overflow-y: auto; /* 使清單長出卷軸 */
+    -webkit-overflow-scrolling: touch;
     padding: 15px;
 }
 
