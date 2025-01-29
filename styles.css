@@ -5,7 +5,7 @@
 }
 
 html, body {
-    height: 100vh;
+    height: 100dvh;
 }
 
 body {
@@ -15,7 +15,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 100dvh;
     padding: 20px;
     overflow: hidden; /* 防止 body 出現卷軸 */
     height: 100vh;
@@ -94,7 +94,9 @@ h1 {
     }
     .container {
         max-width: none;
-        height: 100vh;
+        height: 100dvh;
+        box-shadow: none;
+        border-radius: 0;
     }
     #controlSection #addItemSection {
         margin-right: 0;
