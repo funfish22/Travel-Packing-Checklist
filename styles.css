@@ -5,7 +5,7 @@
 }
 
 html, body {
-    height: 100svh;
+    height: 100dvh;
 }
 
 body {
@@ -18,7 +18,7 @@ body {
     min-height: 100vh;
     padding: 20px;
     overflow: hidden; /* 防止 body 出現卷軸 */
-    height: 100svh;
+    height: 100dvh;
 }
 
 label {
