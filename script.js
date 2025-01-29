@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 window.addEventListener('load', (event) => {
-    fixVh()
+    // fixVh()
 });
 
 function fixVh() {
