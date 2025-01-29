@@ -131,7 +131,12 @@ button:hover {
     color: #e74c3c;
     font-size: 0.9rem;
     margin-top: 5px;
+    padding: 0 15px;
     display: none; /* 預設隱藏 */
+}
+
+.error-message.show {
+    display: block;
 }
 
 #listContainer {
