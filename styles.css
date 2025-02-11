@@ -49,14 +49,14 @@ footer {
     padding: 20px;
     text-align: center;
     position: relative;
+    font-size: 12px;
 }
 
 footer .ver {
     position: absolute;
-    right: 10px;
+    right: 4px;
     font-size: 10px;
-    top: 50%;
-    transform: translateY(-50%);
+    bottom: 4px;
 }
 
 h1 {
