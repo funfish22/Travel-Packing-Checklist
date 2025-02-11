@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我的背包清單</title>
-    <link rel="stylesheet" href="styles.css?ver20250129">
+    <link rel="stylesheet" href="styles.css?ver20250211_1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
@@ -13,8 +13,8 @@
             <h1>我的背包清單</h1>
         </header>
         <div id="tagSection">
-            <button id="travelTwTag" class="tag active" onclick="switchTag('travelTw')">過內旅遊</button>
-            <button id="travelGlobalTag" class="tag" onclick="switchTag('travelGlobal')">過外旅遊</button>
+            <button id="travelTwTag" class="tag active" onclick="switchTag('travelTw')">國內旅遊</button>
+            <button id="travelGlobalTag" class="tag" onclick="switchTag('travelGlobal')">國外旅遊</button>
             <button id="businessTag" class="tag" onclick="switchTag('business')">出差</button>
         </div>
         <div id="controlSection">
@@ -32,6 +32,10 @@
         <div id="listContainer">
             <ul id="travelList"></ul>
         </div>
+        <footer>
+            <p>ALL RIGHTS RESERVED. DESIGNED BY Aga Lin</p>
+            <p class="ver"></p>
+        </footer>
     </div>
     <div id="confirmModal" class="modal">
         <div class="modal-content">
@@ -42,6 +46,6 @@
             </div>
         </div>
     </div>
-    <script src="script.js?ver20250129"></script>
+    <script src="script.js?ver20250211_1"></script>
 </body>
 </html>

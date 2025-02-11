@@ -43,6 +43,22 @@ header {
     text-align: center;
 }
 
+footer {
+    background-color: #3498db;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+}
+
+footer .ver {
+    position: absolute;
+    right: 10px;
+    font-size: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
 h1 {
     font-size: 1.8rem;
 }
