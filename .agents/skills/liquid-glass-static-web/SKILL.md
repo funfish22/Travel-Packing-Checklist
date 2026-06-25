@@ -1,6 +1,6 @@
 ---
 name: liquid-glass-static-web
-description: Design, build, or restyle polished liquid-glass web interfaces using only static HTML, CSS, and optional vanilla JavaScript. Use for landing pages, utilities, dashboards, forms, cards, navigation, modals, or existing no-framework websites that need translucent layered surfaces, soft refraction-like highlights, responsive behavior, accessibility, and graceful fallbacks without React, Vue, Tailwind, npm, bundlers, or other frameworks.
+description: Design, build, or restyle polished Apple-informed liquid-glass web interfaces using only static HTML, CSS, and optional vanilla JavaScript. Use for landing pages, utilities, dashboards, forms, cards, grouped toolbars, tab navigation, menus, modals, or existing no-framework websites that need translucent functional layers, responsive behavior, accessibility, and graceful fallbacks without React, Vue, Tailwind, npm, bundlers, or other frameworks.
 ---
 
 # Liquid Glass Static Web
@@ -17,7 +17,7 @@ Create refined liquid-glass interfaces with semantic HTML, native CSS, and only 
 4. Define reusable design tokens in `:root` for color, transparency, blur, borders, shadows, radii, spacing, and motion.
 5. Apply glass to a small hierarchy of meaningful surfaces:
    - Primary shell or floating navigation
-   - Cards, controls, menus, and modals
+   - Grouped toolbars, controls, menus, and modals
    - Active or selected elements
 6. Add edge highlights, inner light, and shadows subtly. Avoid making every element equally translucent.
 7. Verify responsive layout, keyboard focus, text contrast, reduced motion, and unsupported-browser fallbacks.
@@ -37,6 +37,12 @@ Create refined liquid-glass interfaces with semantic HTML, native CSS, and only 
 - Make controls visibly interactive in default, hover, active, focus-visible, and disabled states.
 - Keep animation brief and functional. Disable or simplify it under `prefers-reduced-motion: reduce`.
 - Avoid remote dependencies when an inline SVG, CSS shape, system font, or existing local asset is sufficient.
+- Treat Liquid Glass as a topmost functional layer for controls and navigation, not as content decoration.
+- Group toolbar items by related action or the interface region they affect. Separate unrelated groups with visible space.
+- Keep toolbar item presentation consistent within each shared background: use icons consistently, text consistently, or the same icon-and-label pattern.
+- Give icon-only actions an accessible label.
+- Keep scrolling content visually beneath floating bars while maintaining sufficient contrast at the scroll edge.
+- Place tab-like navigation at the bottom on phone-sized layouts and keep it fixed above the safe area. Choose top, side, or trailing placement only when the wider-screen context supports it.
 
 ## Recommended CSS Structure
 
@@ -84,5 +90,6 @@ Treat this as a starting point, not a fixed palette.
 ## Resources
 
 - Read [references/design-system.md](references/design-system.md) when choosing tokens, elevations, component treatments, and responsive behavior.
+- Read [references/apple-toolbar-patterns.md](references/apple-toolbar-patterns.md) whenever building navigation bars, tab bars, segmented controls, menus, or toolbars.
 - Read [references/accessibility-and-fallbacks.md](references/accessibility-and-fallbacks.md) before final verification.
 - Copy from [assets/static-starter](assets/static-starter) only when creating a new page. For an existing site, adapt its structure rather than replacing working behavior.

@@ -29,18 +29,6 @@
             </div>
         </header>
 
-        <nav id="tagSection" aria-label="旅行類型" role="tablist">
-            <button id="travelTwTag" class="tag active" type="button" role="tab" aria-selected="true" onclick="switchTag('travelTw')">
-                <span aria-hidden="true">⌂</span> 國內旅遊
-            </button>
-            <button id="travelGlobalTag" class="tag" type="button" role="tab" aria-selected="false" onclick="switchTag('travelGlobal')">
-                <span aria-hidden="true">✈</span> 國外旅遊
-            </button>
-            <button id="businessTag" class="tag" type="button" role="tab" aria-selected="false" onclick="switchTag('business')">
-                <span aria-hidden="true">◇</span> 出差
-            </button>
-        </nav>
-
         <section id="controlSection" aria-label="清單工具">
             <form id="addItemForm">
                 <label class="sr-only" for="newItem">新增攜帶項目</label>
@@ -74,6 +62,25 @@
         <section id="listContainer" aria-label="攜帶項目">
             <ul id="travelList"></ul>
         </section>
+
+        <nav id="tagSection" class="liquid-toolbar" aria-label="旅行類型" role="tablist">
+            <div class="toolbar-group" aria-label="旅遊清單">
+                <button id="travelTwTag" class="tag active" type="button" role="tab" aria-selected="true" onclick="switchTag('travelTw')">
+                    <span class="tag-icon" aria-hidden="true">⌂</span>
+                    <span class="tag-label">國內旅遊</span>
+                </button>
+                <button id="travelGlobalTag" class="tag" type="button" role="tab" aria-selected="false" onclick="switchTag('travelGlobal')">
+                    <span class="tag-icon" aria-hidden="true">✈</span>
+                    <span class="tag-label">國外旅遊</span>
+                </button>
+            </div>
+            <div class="toolbar-group toolbar-group-secondary" aria-label="工作清單">
+                <button id="businessTag" class="tag" type="button" role="tab" aria-selected="false" onclick="switchTag('business')">
+                    <span class="tag-icon" aria-hidden="true">◇</span>
+                    <span class="tag-label">出差</span>
+                </button>
+            </div>
+        </nav>
 
         <footer>
             <p>ALL RIGHTS RESERVED · DESIGNED BY AGA LIN</p>

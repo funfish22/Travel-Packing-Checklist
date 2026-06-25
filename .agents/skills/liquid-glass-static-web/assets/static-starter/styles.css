@@ -86,7 +86,59 @@ select {
   position: relative;
   width: min(100%, 880px);
   padding: clamp(24px, 6vw, 68px);
+  padding-bottom: clamp(112px, 14vw, 138px);
   border-radius: var(--radius-large);
+}
+
+.liquid-toolbar {
+  position: fixed;
+  z-index: 10;
+  left: 50%;
+  bottom: max(16px, env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.toolbar-group {
+  padding: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  background: rgba(10, 24, 42, 0.86);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  display: flex;
+  gap: 4px;
+}
+
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .toolbar-group {
+    background: rgba(255, 255, 255, 0.1);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    backdrop-filter: blur(20px) saturate(140%);
+  }
+}
+
+.toolbar-button {
+  min-height: 44px;
+  padding: 0.7rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  color: var(--muted);
+  background: transparent;
+  cursor: pointer;
+}
+
+.toolbar-button.is-active {
+  border-color: rgba(255, 255, 255, 0.3);
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+.icon-button {
+  width: 44px;
+  padding-inline: 0;
 }
 
 .hero {

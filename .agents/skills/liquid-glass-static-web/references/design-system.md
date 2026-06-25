@@ -51,6 +51,17 @@ Use for dialogs, popovers, and important transient surfaces.
 - Use color, weight, and position—not glow alone—to show importance.
 - Move by no more than 1–2px on hover or active states.
 
+### Toolbars
+
+- Float the toolbar as a distinct functional layer above content.
+- Put tab-like primary navigation at the fixed bottom edge on phone-sized layouts, above the safe area. Use top or side placement when the wider-screen context calls for it.
+- Group controls that perform similar actions or affect the same region.
+- Give each functional group one shared glass background; use spacing between unrelated groups instead of one continuous capsule.
+- Keep icon and label treatment consistent within a group.
+- Use standard, familiar symbols for common actions and always provide accessible names.
+- Allow content to remain visible beneath the bar, but use sufficient blur, tint, or a scroll-edge fade to preserve legibility.
+- Use concentric radii: the outer group radius should visually contain the inner control radius with even insets.
+
 ### Inputs
 
 - Use a quiet inset surface with a clearly visible border.
