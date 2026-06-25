@@ -1,0 +1,4 @@
+interface:
+  display_name: "Liquid Glass Static Web"
+  short_description: "Build polished liquid-glass static HTML interfaces"
+  default_prompt: "Use $liquid-glass-static-web to design or restyle this static HTML page with a polished liquid-glass visual system."

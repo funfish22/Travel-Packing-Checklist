@@ -1,51 +1,100 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#071a2d">
+    <meta name="color-scheme" content="dark">
     <title>我的背包清單</title>
-    <link rel="stylesheet" href="styles.css?ver2.01">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css?ver3.0">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>我的背包清單</h1>
+    <div class="ambient ambient-one" aria-hidden="true"></div>
+    <div class="ambient ambient-two" aria-hidden="true"></div>
+    <div class="ambient ambient-three" aria-hidden="true"></div>
+
+    <main class="container glass-surface">
+        <header class="app-header">
+            <div class="title-group">
+                <span class="app-mark" aria-hidden="true">✦</span>
+                <div>
+                    <p class="eyebrow">Travel companion</p>
+                    <h1>我的背包清單</h1>
+                    <p class="subtitle">輕裝出發，重要的都帶上。</p>
+                </div>
+            </div>
+            <div class="progress-pill" aria-live="polite">
+                <span class="progress-dot" aria-hidden="true"></span>
+                <span id="progressText">準備清單中</span>
+            </div>
         </header>
-        <div id="tagSection">
-            <button id="travelTwTag" class="tag active" onclick="switchTag('travelTw')">國內旅遊</button>
-            <button id="travelGlobalTag" class="tag" onclick="switchTag('travelGlobal')">國外旅遊</button>
-            <button id="businessTag" class="tag" onclick="switchTag('business')">出差</button>
-        </div>
-        <div id="controlSection">
-            <div id="addItemSection">
-                <input type="text" id="newItem" placeholder="添加新項目...">
-            </div>
+
+        <nav id="tagSection" aria-label="旅行類型" role="tablist">
+            <button id="travelTwTag" class="tag active" type="button" role="tab" aria-selected="true" onclick="switchTag('travelTw')">
+                <span aria-hidden="true">⌂</span> 國內旅遊
+            </button>
+            <button id="travelGlobalTag" class="tag" type="button" role="tab" aria-selected="false" onclick="switchTag('travelGlobal')">
+                <span aria-hidden="true">✈</span> 國外旅遊
+            </button>
+            <button id="businessTag" class="tag" type="button" role="tab" aria-selected="false" onclick="switchTag('business')">
+                <span aria-hidden="true">◇</span> 出差
+            </button>
+        </nav>
+
+        <section id="controlSection" aria-label="清單工具">
+            <form id="addItemForm">
+                <label class="sr-only" for="newItem">新增攜帶項目</label>
+                <div id="addItemSection">
+                    <span class="input-icon" aria-hidden="true">＋</span>
+                    <input type="text" id="newItem" placeholder="新增攜帶項目…" autocomplete="off">
+                    <button id="addButton" class="primary-button" type="submit">
+                        <span aria-hidden="true">＋</span>
+                        <span>新增</span>
+                    </button>
+                </div>
+                <span id="inputError" class="error-message" role="alert"></span>
+            </form>
+
             <div class="controlButtons">
-                <button id="addButton"><i class="fas fa-plus"></i> <span>新增</span></button>
-                <button id="editButton" onclick="toggleEditMode()"><i class="fas fa-edit"></i> <span>編輯</span></button>
-                <button id="resetButton" onclick="resetList(true)"><i class="fas fa-undo"></i> <span>還原預設</span></button>
-                <button id="uncheckButton" onclick="uncheckAll()"><i class="fas fa-times-circle"></i> 取消全部勾選</button> <!-- 新增的按鈕 -->
+                <button id="editButton" class="tool-button" type="button" onclick="toggleEditMode()">
+                    <span aria-hidden="true">✎</span>
+                    <span>編輯</span>
+                </button>
+                <button id="resetButton" class="tool-button" type="button" onclick="resetList(true)">
+                    <span aria-hidden="true">↺</span>
+                    <span>還原預設</span>
+                </button>
+                <button id="uncheckButton" class="tool-button danger-button" type="button" onclick="uncheckAll()">
+                    <span aria-hidden="true">○</span>
+                    <span>取消全部勾選</span>
+                </button>
             </div>
-        </div>
-        <span id="inputError" class="error-message"></span>
-        <div id="listContainer">
+        </section>
+
+        <section id="listContainer" aria-label="攜帶項目">
             <ul id="travelList"></ul>
-        </div>
+        </section>
+
         <footer>
-            <p>ALL RIGHTS RESERVED. DESIGNED BY Aga Lin</p>
+            <p>ALL RIGHTS RESERVED · DESIGNED BY AGA LIN</p>
             <p class="ver"></p>
         </footer>
-    </div>
-    <div id="confirmModal" class="modal">
-        <div class="modal-content">
-            <p id="modalMessage"></p>
+    </main>
+
+    <div id="confirmModal" class="modal" aria-hidden="true">
+        <div class="modal-content glass-surface" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalMessage">
+            <span class="modal-icon" aria-hidden="true">!</span>
+            <div class="modal-copy">
+                <p id="modalTitle" class="modal-title">請確認操作</p>
+                <p id="modalMessage"></p>
+            </div>
             <div class="modal-buttons">
-                <button id="confirmButton">確認</button>
-                <button id="cancelButton">取消</button>
+                <button id="cancelButton" class="tool-button" type="button">取消</button>
+                <button id="confirmButton" class="confirm-danger" type="button">確認</button>
             </div>
         </div>
     </div>
-    <script src="script.js?ver2.01"></script>
+
+    <script src="script.js?ver3.0"></script>
 </body>
 </html>
