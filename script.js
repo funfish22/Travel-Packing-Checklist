@@ -2,6 +2,7 @@ let itemCounter = 0;
 let isEditMode = false;
 let currentTag = 'travelTw';
 let lastFocusedElement = null;
+let indicatorFrame = 0;
 let ver = '3.00';
 
 const initialItems = {
@@ -26,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const addItemForm = document.getElementById("addItemForm");
     const modal = document.getElementById('confirmModal');
     const cancelButton = document.getElementById('cancelButton');
+    const container = document.querySelector('.container');
 
     addItemForm.addEventListener('submit', function(event) {
         event.preventDefault();
@@ -49,6 +51,14 @@ document.addEventListener('DOMContentLoaded', function() {
             closeConfirmModal();
         }
     });
+
+    window.addEventListener('resize', scheduleToolbarIndicator);
+    document.fonts?.ready.then(() => updateToolbarIndicator(false));
+
+    container.addEventListener('pointermove', updateGlassLight);
+    container.addEventListener('pointerleave', resetGlassLight);
+
+    updateToolbarIndicator(false);
 });
 
 function fixVh() {
@@ -71,6 +81,52 @@ function switchTag(tag) {
     });
 
     loadList();
+    updateToolbarIndicator(true);
+}
+
+function scheduleToolbarIndicator() {
+    window.cancelAnimationFrame(indicatorFrame);
+    indicatorFrame = window.requestAnimationFrame(() => updateToolbarIndicator(false));
+}
+
+function updateToolbarIndicator(animate = true) {
+    const toolbar = document.getElementById('tagSection');
+    const indicator = toolbar?.querySelector('.toolbar-indicator');
+    const activeTab = toolbar?.querySelector('.tag.active');
+
+    if (!toolbar || !indicator || !activeTab) return;
+
+    const toolbarRect = toolbar.getBoundingClientRect();
+    const activeRect = activeTab.getBoundingClientRect();
+
+    indicator.style.setProperty('--indicator-x', `${activeRect.left - toolbarRect.left}px`);
+    indicator.style.setProperty('--indicator-y', `${activeRect.top - toolbarRect.top}px`);
+    indicator.style.setProperty('--indicator-width', `${activeRect.width}px`);
+    indicator.style.setProperty('--indicator-height', `${activeRect.height}px`);
+    toolbar.classList.add('indicator-ready');
+
+    if (animate) {
+        toolbar.classList.remove('indicator-moving');
+        void toolbar.offsetWidth;
+        toolbar.classList.add('indicator-moving');
+    }
+}
+
+function updateGlassLight(event) {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const container = event.currentTarget;
+    const rect = container.getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / rect.width) * 100;
+    const y = ((event.clientY - rect.top) / rect.height) * 100;
+
+    container.style.setProperty('--light-x', `${x}%`);
+    container.style.setProperty('--light-y', `${y}%`);
+}
+
+function resetGlassLight(event) {
+    event.currentTarget.style.removeProperty('--light-x');
+    event.currentTarget.style.removeProperty('--light-y');
 }
 
 function addItem() {

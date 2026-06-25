@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#071a2d">
     <meta name="color-scheme" content="dark">
     <title>我的背包清單</title>
-    <link rel="stylesheet" href="styles.css?ver3.0">
+    <link rel="stylesheet" href="styles.css?ui3.1">
 </head>
 <body>
     <div class="ambient ambient-one" aria-hidden="true"></div>
@@ -14,6 +14,10 @@
     <div class="ambient ambient-three" aria-hidden="true"></div>
 
     <main class="container glass-surface">
+        <div class="glass-layer glass-filter" aria-hidden="true"></div>
+        <div class="glass-layer glass-overlay" aria-hidden="true"></div>
+        <div class="glass-layer glass-specular" aria-hidden="true"></div>
+
         <header class="app-header">
             <div class="title-group">
                 <span class="app-mark" aria-hidden="true">✦</span>
@@ -64,6 +68,7 @@
         </section>
 
         <nav id="tagSection" class="liquid-toolbar" aria-label="旅行類型" role="tablist">
+            <span class="toolbar-indicator" aria-hidden="true"></span>
             <div class="toolbar-group" aria-label="旅遊清單">
                 <button id="travelTwTag" class="tag active" type="button" role="tab" aria-selected="true" onclick="switchTag('travelTw')">
                     <span class="tag-icon" aria-hidden="true">⌂</span>
@@ -102,6 +107,14 @@
         </div>
     </div>
 
-    <script src="script.js?ver3.0"></script>
+    <svg class="liquid-filter-defs" aria-hidden="true">
+        <filter id="liquid-warp" x="-20%" y="-30%" width="140%" height="160%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.012 0.022" numOctaves="2" seed="14" result="noise"></feTurbulence>
+            <feGaussianBlur in="noise" stdDeviation="1.4" result="softNoise"></feGaussianBlur>
+            <feDisplacementMap in="SourceGraphic" in2="softNoise" scale="5" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap>
+        </filter>
+    </svg>
+
+    <script src="script.js?ui3.1"></script>
 </body>
 </html>

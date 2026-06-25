@@ -16,6 +16,9 @@
     --glass-highlight: rgba(255, 255, 255, 0.22);
     --glass-shadow: 0 28px 80px rgba(0, 8, 18, 0.46);
     --glass-blur: 24px;
+    --glass-saturation: 150%;
+    --glass-reflex-light: 1;
+    --glass-reflex-dark: 1;
     --surface-soft: rgba(231, 250, 255, 0.07);
     --surface-hover: rgba(231, 250, 255, 0.12);
     --line: rgba(219, 248, 255, 0.11);
@@ -109,6 +112,8 @@ button {
 }
 
 .container {
+    --light-x: 22%;
+    --light-y: 8%;
     position: relative;
     z-index: 1;
     width: min(100%, 760px);
@@ -118,6 +123,55 @@ button {
     border-radius: var(--radius-xl);
     display: flex;
     flex-direction: column;
+    isolation: isolate;
+}
+
+.container > :not(.glass-layer) {
+    position: relative;
+    z-index: 3;
+}
+
+.glass-layer {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+}
+
+.glass-filter {
+    z-index: 0;
+}
+
+.glass-overlay {
+    z-index: 1;
+    background:
+        linear-gradient(155deg, rgba(218, 249, 255, 0.09), rgba(25, 80, 109, 0.02) 42%, rgba(4, 24, 39, 0.15)),
+        color-mix(in srgb, var(--glass-fill) 78%, transparent);
+}
+
+.glass-specular {
+    z-index: 2;
+    background:
+        radial-gradient(circle at var(--light-x) var(--light-y), rgba(255, 255, 255, 0.2), transparent 26%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.09), transparent 28%);
+    box-shadow:
+        inset 0 0 0 1px color-mix(in srgb, white calc(var(--glass-reflex-light) * 10%), transparent),
+        inset 1.8px 3px 0 -2px color-mix(in srgb, white calc(var(--glass-reflex-light) * 86%), transparent),
+        inset -2px -2px 0 -2px color-mix(in srgb, white calc(var(--glass-reflex-light) * 66%), transparent),
+        inset -0.5px -1px 5px color-mix(in srgb, black calc(var(--glass-reflex-dark) * 16%), transparent);
+}
+
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .container.glass-surface {
+        background: rgba(7, 27, 44, 0.3);
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+    }
+
+    .glass-filter {
+        -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+        backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+    }
 }
 
 .app-header {
@@ -203,17 +257,90 @@ h1 {
     display: grid;
     grid-template-columns: minmax(0, 2fr) minmax(112px, 1fr);
     gap: 10px;
+    isolation: isolate;
+}
+
+.toolbar-indicator {
+    --indicator-x: 0px;
+    --indicator-y: 0px;
+    --indicator-width: 0px;
+    --indicator-height: 0px;
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    width: var(--indicator-width);
+    height: var(--indicator-height);
+    border: 1px solid rgba(230, 255, 252, 0.42);
+    border-radius: 999px;
+    opacity: 0;
+    transform: translate3d(var(--indicator-x), var(--indicator-y), 0);
+    background:
+        linear-gradient(145deg, rgba(235, 255, 252, 0.28), rgba(93, 205, 194, 0.15)),
+        color-mix(in srgb, rgba(205, 255, 247, 0.28) 68%, transparent);
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1),
+        inset 2px 2px 0 -1px rgba(255, 255, 255, 0.52),
+        inset -2px -4px 2px -3px rgba(255, 255, 255, 0.24),
+        inset -1px 2px 4px -2px rgba(0, 20, 28, 0.42),
+        0 6px 18px rgba(0, 8, 18, 0.22);
+    pointer-events: none;
+    transition:
+        width 420ms cubic-bezier(0.22, 0.9, 0.28, 1),
+        height 420ms cubic-bezier(0.22, 0.9, 0.28, 1),
+        transform 420ms cubic-bezier(0.22, 0.9, 0.28, 1),
+        opacity 160ms ease;
+}
+
+.toolbar-indicator::after {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    content: "";
+    background:
+        radial-gradient(circle at 28% 12%, rgba(255, 255, 255, 0.38), transparent 26%),
+        linear-gradient(110deg, transparent 25%, rgba(255, 255, 255, 0.12) 48%, transparent 70%);
+}
+
+.indicator-ready .toolbar-indicator {
+    opacity: 1;
+}
+
+.indicator-moving .toolbar-indicator::after {
+    animation: liquid-stretch 440ms cubic-bezier(0.22, 0.9, 0.28, 1);
+}
+
+@supports (filter: url("#liquid-warp")) {
+    .toolbar-indicator {
+        filter: url("#liquid-warp");
+    }
+}
+
+@keyframes liquid-stretch {
+    0% {
+        transform: scaleX(1);
+    }
+    48% {
+        transform: scaleX(1.11);
+    }
+    100% {
+        transform: scaleX(1);
+    }
 }
 
 .toolbar-group {
+    position: relative;
     min-width: 0;
     padding: 5px;
     border: 1px solid rgba(218, 249, 255, 0.16);
     border-radius: 999px;
-    background: rgba(7, 27, 43, 0.86);
+    background: rgba(7, 27, 43, 0.88);
     box-shadow:
-        0 12px 30px rgba(0, 8, 18, 0.24),
-        inset 0 1px 0 rgba(255, 255, 255, 0.18);
+        inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+        inset 1.5px 2.5px 0 -2px rgba(255, 255, 255, 0.48),
+        inset -2px -3px 1px -2px rgba(255, 255, 255, 0.12),
+        inset -1px 2px 4px -2px rgba(0, 16, 28, 0.4),
+        0 12px 30px rgba(0, 8, 18, 0.24);
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 4px;
@@ -225,13 +352,15 @@ h1 {
 
 @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
     .toolbar-group {
-        background: rgba(182, 225, 236, 0.1);
-        -webkit-backdrop-filter: blur(20px) saturate(145%);
-        backdrop-filter: blur(20px) saturate(145%);
+        background: color-mix(in srgb, rgba(196, 231, 239, 0.16) 74%, transparent);
+        -webkit-backdrop-filter: blur(16px) saturate(var(--glass-saturation));
+        backdrop-filter: blur(16px) saturate(var(--glass-saturation));
     }
 }
 
 .tag {
+    position: relative;
+    z-index: 3;
     min-height: 44px;
     min-width: 0;
     padding: 9px 13px;
@@ -253,14 +382,10 @@ h1 {
 }
 
 .tag.active {
-    border-color: rgba(220, 255, 250, 0.34);
+    border-color: transparent;
     color: #effffc;
-    background:
-        linear-gradient(145deg, rgba(220, 255, 250, 0.26), rgba(105, 202, 198, 0.16));
-    box-shadow:
-        0 5px 16px rgba(0, 8, 18, 0.18),
-        inset 0 1px 0 rgba(255, 255, 255, 0.32),
-        inset 0 -1px 0 rgba(76, 196, 183, 0.14);
+    background: transparent;
+    box-shadow: none;
 }
 
 .tag-icon {
@@ -638,6 +763,14 @@ input:focus-visible {
     border: 0;
 }
 
+.liquid-filter-defs {
+    position: fixed;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
 @media (max-width: 680px) {
     body {
         padding: 0;
@@ -734,6 +867,10 @@ input:focus-visible {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+    }
+
+    .toolbar-indicator {
+        filter: none;
     }
 }
 
