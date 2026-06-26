@@ -57,8 +57,10 @@
 
 - 折射只作為增強效果，不得影響文字或操作辨識。
 - 將位移濾鏡套在選取塊或裝飾層，不套在文字內容。
-- 不支援 `filter: url()` 時保留圓角、覆色、內高光與陰影。
+- 不支援 `filter: url()` 或 `backdrop-filter: url()` 時保留圓角、覆色、內高光與陰影。
+- `backdrop-filter: url(...)` 實務上偏 Chromium；Firefox、Safari 或部分行動瀏覽器需視為可能只看到 fallback 材質。
 - 小螢幕、低效能裝置或減少動態模式可直接停用折射。
+- 動態產生 `<feImage>` 位移圖時，必須限制 canvas 尺寸並只在幾何變化時重建，不在捲動或指標移動時重建。
 
 ## 強制色彩與高對比
 
@@ -82,7 +84,8 @@
 - 避免大量重疊的 `backdrop-filter` 區域。
 - 優先模糊一個父層，而非每個子元素各自模糊。
 - 不動畫化模糊、飽和度或 SVG 位移強度。
-- SVG `feTurbulence` 與 `feDisplacementMap` 只用在小型重要元素。
+- SVG `feImage`、`feTurbulence` 與 `feDisplacementMap` 只用在小型重要元素。
+- 動態位移圖的資料 URL 不應大於實際元件尺寸，也不應套在整頁或大型清單。
 - 動態場景優先動畫化 `transform` 與 `opacity`。
 - 在手機尺寸測試捲動、鍵盤彈出與固定底部工具列。
 - 若出現卡頓，先移除折射與裝飾動畫，再降低必要功能品質。

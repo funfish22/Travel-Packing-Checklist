@@ -17,6 +17,8 @@
     --glass-shadow: 0 28px 80px rgba(0, 8, 18, 0.46);
     --glass-blur: 24px;
     --glass-saturation: 150%;
+    --glass-tint-rgb: 220, 255, 250;
+    --glass-tint-opacity: 0.055;
     --glass-reflex-light: 1;
     --glass-reflex-dark: 1;
     --surface-soft: rgba(231, 250, 255, 0.07);
@@ -152,7 +154,7 @@ button {
 .glass-specular {
     z-index: 2;
     background:
-        radial-gradient(circle at var(--light-x) var(--light-y), rgba(255, 255, 255, 0.2), transparent 26%),
+        radial-gradient(circle at var(--light-x) var(--light-y), rgba(255, 255, 255, 0.14), transparent 28%),
         linear-gradient(135deg, rgba(255, 255, 255, 0.09), transparent 28%);
     box-shadow:
         inset 0 0 0 1px color-mix(in srgb, white calc(var(--glass-reflex-light) * 10%), transparent),
@@ -271,19 +273,23 @@ h1 {
     top: 0;
     width: var(--indicator-width);
     height: var(--indicator-height);
-    border: 1px solid rgba(230, 255, 252, 0.42);
+    border: 1px solid rgba(230, 255, 252, 0.28);
     border-radius: 999px;
     opacity: 0;
+    overflow: hidden;
     transform: translate3d(var(--indicator-x), var(--indicator-y), 0);
     background:
-        linear-gradient(145deg, rgba(235, 255, 252, 0.28), rgba(93, 205, 194, 0.15)),
-        color-mix(in srgb, rgba(205, 255, 247, 0.28) 68%, transparent);
+        radial-gradient(circle at 24% 12%, rgba(255, 255, 255, 0.18), transparent 38%),
+        linear-gradient(180deg, rgba(246, 255, 253, 0.11), rgba(137, 224, 216, 0.035)),
+        rgba(var(--glass-tint-rgb), var(--glass-tint-opacity));
     box-shadow:
-        inset 0 0 0 1px rgba(255, 255, 255, 0.1),
-        inset 2px 2px 0 -1px rgba(255, 255, 255, 0.52),
-        inset -2px -4px 2px -3px rgba(255, 255, 255, 0.24),
-        inset -1px 2px 4px -2px rgba(0, 20, 28, 0.42),
-        0 6px 18px rgba(0, 8, 18, 0.22);
+        inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+        inset 1.5px 2px 0 -1px rgba(255, 255, 255, 0.38),
+        inset -2px -4px 2px -3px rgba(255, 255, 255, 0.16),
+        inset -1px 2px 4px -2px rgba(0, 20, 28, 0.34),
+        0 5px 14px rgba(0, 8, 18, 0.16);
+    -webkit-backdrop-filter: blur(0.35px) saturate(125%);
+    backdrop-filter: blur(0.35px) saturate(125%);
     pointer-events: none;
     transition:
         width 420ms cubic-bezier(0.22, 0.9, 0.28, 1),
@@ -298,8 +304,8 @@ h1 {
     border-radius: inherit;
     content: "";
     background:
-        radial-gradient(circle at 28% 12%, rgba(255, 255, 255, 0.38), transparent 26%),
-        linear-gradient(110deg, transparent 25%, rgba(255, 255, 255, 0.12) 48%, transparent 70%);
+        radial-gradient(circle at 26% 10%, rgba(255, 255, 255, 0.2), transparent 30%),
+        linear-gradient(110deg, transparent 28%, rgba(255, 255, 255, 0.055) 50%, transparent 72%);
 }
 
 .indicator-ready .toolbar-indicator {
@@ -310,9 +316,10 @@ h1 {
     animation: liquid-stretch 440ms cubic-bezier(0.22, 0.9, 0.28, 1);
 }
 
-@supports (filter: url("#liquid-warp")) {
+@supports ((backdrop-filter: url("#liquid-toolbar-filter")) or (-webkit-backdrop-filter: url("#liquid-toolbar-filter"))) {
     .toolbar-indicator {
-        filter: url("#liquid-warp");
+        -webkit-backdrop-filter: url("#liquid-toolbar-filter");
+        backdrop-filter: url("#liquid-toolbar-filter");
     }
 }
 
@@ -383,9 +390,11 @@ h1 {
 
 .tag.active {
     border-color: transparent;
-    color: #effffc;
+    color: #f7fffd;
     background: transparent;
     box-shadow: none;
+    font-weight: 850;
+    text-shadow: 0 1px 3px rgba(0, 18, 28, 0.48);
 }
 
 .tag-icon {
@@ -870,6 +879,8 @@ input:focus-visible {
     }
 
     .toolbar-indicator {
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
         filter: none;
     }
 }
@@ -877,6 +888,7 @@ input:focus-visible {
 @media (forced-colors: active) {
     .glass-surface,
     #tagSection,
+    .toolbar-indicator,
     #addItemSection,
     #travelList li,
     .tag,
